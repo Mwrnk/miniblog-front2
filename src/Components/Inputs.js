@@ -10,6 +10,7 @@ export class Inputs extends React.Component {
     state={
         postagens: [
         ],
+        id:"",
         titulo: "",
         conteudo:"",
         link: ""
@@ -28,10 +29,22 @@ export class Inputs extends React.Component {
       };
 
     adicionarPostagem = (event) => {
-        let titulo = this.state.titulo
-        let conteudo = this.state.conteudo
-        let link = this.state.link
-
+        let titulo = this.state.titulo;
+        let conteudo = this.state.conteudo;
+        let link = this.state.link;
+        let id = Math.random();
+ 
+        let postagens = [
+          ...this.state.postagens,
+          { titulo: titulo, conteudo: conteudo, link: link, id: id },
+        ];
+        this.setState({ postagens: postagens });
+    
+        this.setState({
+          titulo: "",
+          conteudo: "",
+          link: "",
+        });
     }
   render() {
     return (
