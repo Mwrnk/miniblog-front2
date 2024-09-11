@@ -1,14 +1,18 @@
 import React from "react";
 import styled from "styled-components";
+import ListaDePostagens from "./Posts";
 
 const Formu = styled.form`
   display: flex;
   unicode-bidi: isolate;
   flex-direction: column;
 `;
+
 export class Inputs extends React.Component {
   state = {
-    postagens: [],
+    postagens: [
+      {titulo: "çjn", conteudo: "ajnf", link: "afa", id: "1"}
+    ],
     id: "",
     titulo: "",
     conteudo: "",
@@ -44,10 +48,10 @@ export class Inputs extends React.Component {
       conteudo: "",
       link: "",
     });
-
+  
   };
   removerPostagem = (id) => {
-    const postCopiado = [...this.state.professores];
+    const postCopiado = [...this.state.postagens];
     const posts = postCopiado.filter((posts) => {
       return id !== posts.id;
     });
@@ -82,6 +86,10 @@ export class Inputs extends React.Component {
         <div>
           <button onClick={this.adicionarPostagem}>Adicionar</button>
         </div>
+        <ListaDePostagens
+          postagens={this.state.postagens}
+          removerPostagem={this.removerPostagem}
+        />
       </>
     );
   }
