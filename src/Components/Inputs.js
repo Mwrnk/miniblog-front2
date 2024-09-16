@@ -10,9 +10,7 @@ const Formu = styled.form`
 
 export class Inputs extends React.Component {
   state = {
-    postagens: [
-      {titulo: "çjn", conteudo: "ajnf", link: "afa", id: "1"}
-    ],
+    postagens: [],
     id: "",
     titulo: "",
     conteudo: "",
@@ -31,6 +29,23 @@ export class Inputs extends React.Component {
     this.setState({ link: event.target.value });
   };
 
+  componentDidMount() {
+    // Adiciona um listener global para capturar o "Enter"
+    window.addEventListener('keydown', this.handleGlobalKeyDown);
+  }
+
+  componentWillUnmount() {
+    // Remove o listener global ao desmontar o componente
+    window.removeEventListener('keydown', this.handleGlobalKeyDown);
+  }
+
+  // Listener global para capturar "Enter" fora dos inputs
+  handleGlobalKeyDown = (event) => {
+    if (event.key === 'Enter') {
+      this.adicionarPostagem(event);
+    }
+  }
+
   adicionarPostagem = (event) => {
     let titulo = this.state.titulo;
     let conteudo = this.state.conteudo;
@@ -41,6 +56,7 @@ export class Inputs extends React.Component {
       ...this.state.postagens,
       { titulo: titulo, conteudo: conteudo, link: link, id: id },
     ];
+
     this.setState({ postagens: postagens });
 
     this.setState({
@@ -65,7 +81,8 @@ export class Inputs extends React.Component {
           <Formu>
             <input
               type="text"
-              placeholder="Titulo da Postagem"
+              placeholder="Titulo da Postagem (maximo de 50 caracteres)"
+              maxLength={50}
               onChange={this.onChangeTitulo}
               value={this.state.titulo}
             ></input>
@@ -84,7 +101,7 @@ export class Inputs extends React.Component {
           </Formu>
         </section>
         <div>
-          <button onClick={this.adicionarPostagem}>Adicionar</button>
+          <button onClick={this.adicionarPostagem} onKeyDown={this.handleKeyDown} >Adicionar</button>
         </div>
         <ListaDePostagens
           postagens={this.state.postagens}
