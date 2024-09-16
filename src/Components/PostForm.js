@@ -1,12 +1,54 @@
 import React from "react";
 import styled from "styled-components";
-import ListaDePostagens from "./Posts";
+import ListaDePostagens from "./Post";
 
 const Formu = styled.form`
   display: flex;
   unicode-bidi: isolate;
   flex-direction: column;
+  
 `;
+const Input = styled.input`
+  padding: 0.875rem;
+  font-size: 1rem;
+  border: 1.5px solid #000;
+  border-radius: 0.5rem;
+  box-shadow: 2.5px 3px 0 #000;
+  outline: none;
+  transition: ease 0.25s;
+
+  &:focus {
+  box-shadow: 5.5px 7px 0 black;
+  }
+`;
+
+const TextArea = styled.textarea`
+padding: 0.875rem;
+  font-size: 1rem;
+  border: 1.5px solid #000;
+  border-radius: 0.5rem;
+  box-shadow: 2.5px 3px 0 #000;
+  outline: none;
+  transition: ease 0.25s;
+
+  &:focus {
+  box-shadow: 5.5px 7px 0 black;
+  }
+`
+const Button = styled.button`
+  background-color: #1ab85e;
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+
+  &:hover {
+    background-color: #18994f;
+  }
+`
 
 export class Inputs extends React.Component {
   state = {
@@ -79,29 +121,29 @@ export class Inputs extends React.Component {
       <>
         <section>
           <Formu>
-            <input
+            <Input
               type="text"
               placeholder="Titulo da Postagem (maximo de 50 caracteres)"
               maxLength={50}
               onChange={this.onChangeTitulo}
               value={this.state.titulo}
-            ></input>
-            <textarea
+            ></Input>
+            <TextArea
               type="text"
               placeholder="Conteudo"
               onChange={this.onChangeConteudo}
               value={this.state.conteudo}
-            ></textarea>
-            <input
+            ></TextArea>
+            <Input
               type="text"
               placeholder="Link"
               onChange={this.onChangeLink}
               value={this.state.link}
-            ></input>
+            ></Input>
           </Formu>
         </section>
         <div>
-          <button onClick={this.adicionarPostagem} onKeyDown={this.handleKeyDown} >Adicionar</button>
+          <Button onClick={this.adicionarPostagem} onKeyDown={this.handleKeyDown} >Adicionar</Button>
         </div>
         <ListaDePostagens
           postagens={this.state.postagens}

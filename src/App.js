@@ -1,7 +1,7 @@
 import React from "react";
 import { Header } from './Components/Header';
-import { Inputs } from "./Components/Inputs";
-import { Posts } from "./Components/Posts";
+import { Inputs } from "./Components/PostForm";
+import { Posts } from "./Components/Post";
 
 function App() {
   return(
