@@ -6,8 +6,9 @@ const Formu = styled.form`
   display: flex;
   unicode-bidi: isolate;
   flex-direction: column;
-  
+
 `;
+
 const Input = styled.input`
   padding: 0.875rem;
   font-size: 1rem;
@@ -16,6 +17,7 @@ const Input = styled.input`
   box-shadow: 2.5px 3px 0 #000;
   outline: none;
   transition: ease 0.25s;
+  margin: 0.75rem;
 
   &:focus {
   box-shadow: 5.5px 7px 0 black;
@@ -30,7 +32,8 @@ padding: 0.875rem;
   box-shadow: 2.5px 3px 0 #000;
   outline: none;
   transition: ease 0.25s;
-
+  margin: 0.75rem;
+  
   &:focus {
   box-shadow: 5.5px 7px 0 black;
   }
@@ -44,6 +47,7 @@ const Button = styled.button`
   font-size: 16px;
   cursor: pointer;
   transition: background-color 0.3s ease;
+  margin: 0.75rem;
 
   &:hover {
     background-color: #18994f;
@@ -89,10 +93,16 @@ export class Inputs extends React.Component {
   }
 
   adicionarPostagem = (event) => {
+    
     let titulo = this.state.titulo;
     let conteudo = this.state.conteudo;
     let link = this.state.link;
     let id = Math.random();
+
+    if (!titulo || !conteudo || !link) {
+      alert('Preencha os campos restantes!');
+    return;
+    }
 
     let postagens = [
       ...this.state.postagens,
