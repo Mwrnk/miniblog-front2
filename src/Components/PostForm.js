@@ -96,10 +96,11 @@ export class Inputs extends React.Component {
     
     let titulo = this.state.titulo;
     let conteudo = this.state.conteudo;
-    let link = this.state.link;
+    let link = this.state.link || "/file.svg"; // Verifica se o campo 'link' está vazio, se estiver, é adicionado uma imagem default ao source da imagem do post.
     let id = Math.random();
+    
 
-    if (!titulo || !conteudo || !link) {
+    if (!titulo || !conteudo) {
       alert('Preencha os campos restantes!');
     return;
     }
@@ -116,8 +117,8 @@ export class Inputs extends React.Component {
       conteudo: "",
       link: "",
     });
-  
   };
+
   removerPostagem = (id) => {
     const postCopiado = [...this.state.postagens];
     const posts = postCopiado.filter((posts) => {
