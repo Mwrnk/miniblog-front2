@@ -11,6 +11,7 @@ const Button = styled.button`
   font-size: 16px;
   cursor: pointer;
   transition: background-color 0.3s ease;
+  margin: 0.75em;
 
   &:hover {
     background-color: #18994f;
@@ -91,11 +92,12 @@ const CloseButton = styled.button`
 `;
 
 const PostText = styled.p`
-  max-height: 60px; /* Define uma altura máxima para o texto */
-  overflow: hidden; /* Esconde o texto que ultrapassa o max-height */
-  text-overflow: ellipsis; /* Adiciona reticências (...) no final do texto */
+  max-height: 60px; ${'' /* Define uma altura máxima para o texto */}
+  overflow: hidden; ${'' /* Esconde o texto que ultrapassa o max-height */}
+  text-overflow: ellipsis; ${'' /* Adiciona reticências (...) no final do texto */}
   margin: 0;
 `;
+
 
 const Postagem = ({ titulo, conteudo, link, id, removerPostagem }) => {
   const [modalOpen, setModalOpen] = useState(false);
@@ -103,23 +105,30 @@ const Postagem = ({ titulo, conteudo, link, id, removerPostagem }) => {
   const handleOpenModal = () => setModalOpen(true);
   const handleCloseModal = () => setModalOpen(false);
 
+  const isLongText = conteudo.length > 30; // Verifica se o conteudo do campo texto tem mais de 30 caracteres
+  const truncatedText = isLongText ? conteudo.substring(0, 30) + "..." : conteudo; // Aplica reticências só se necessário
+
   return (
     <>
       <PostCard>
         <PostImage src={link} alt={titulo} />
         <PostContent>
           <H2>{titulo}</H2>
-          <PostText>{conteudo.substring(0, 100)}...</PostText>
-          <Button onClick={handleOpenModal}>Ler mais</Button>
+          <PostText>{truncatedText}</PostText> {/* Exibe texto com reticências se for longo */}
+          
+          {/* Só renderiza o botão "Ler mais" se o conteúdo for longo */}
+          {isLongText && <Button onClick={handleOpenModal}>Ler mais</Button>}
+          
           <Button onClick={() => removerPostagem(id)}>Remover</Button>
         </PostContent>
       </PostCard>
 
+      {/* Modal só aparece se modalOpen estiver true */}
       {modalOpen && (
         <Modal>
           <ModalContent>
             <h2>{titulo}</h2>
-            <ModalText>{conteudo}</ModalText>
+            <ModalText>{conteudo}</ModalText> {/* Mostra o conteúdo completo no modal */}
             <CloseButton onClick={handleCloseModal}>Fechar</CloseButton>
           </ModalContent>
         </Modal>
