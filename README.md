@@ -5,7 +5,7 @@ Venha ser um Cria no Miniblog que é dos Cria!
 
 ## Sobre
 
-O Miniblog é a nova rede social dedicada para os Cria. Este blog é perfeito para os Cria  compartilharem suas loucuras. Aqui você pode se sentir a vontade para fazer as suas publicações sem nenhum medo e restrição, somos todos Crias.
+O Miniblog é a nova rede social dedicada para os Crias. Este blog é perfeito para compartilharem suas loucuras. Aqui você pode se sentir a vontade para fazer as suas publicações sem nenhum medo e restrição, somos todos iguais.
 
 
 ## Tecnologias Utilizadas
