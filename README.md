@@ -1,4 +1,3 @@
-
 # Miniblog dos Cria
 
 Venha ser um Cria no Miniblog que é dos Cria!
@@ -9,16 +8,13 @@ Venha ser um Cria no Miniblog que é dos Cria!
 O Miniblog é a nova rede social dedicada para os Cria. Este blog é perfeito para os Cria  compartilharem suas loucuras. Aqui você pode se sentir a vontade para fazer as suas publicações sem nenhum medo e restrição, somos todos Crias.
 
 
-## Demonstração
-
-Insira um gif ou um link de alguma demonstração
-
-
 ## Tecnologias Utilizadas
 
 
  - React: Uma biblioteca JavaScript para a construção de interfaces de usuário.
  - Styled-Components: Uma biblioteca para estilizar componentes com JavaScript e CSS-in-JS.
+
+
 ## Como utilizar
 
 
