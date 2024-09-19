@@ -41,7 +41,7 @@ padding: 0.875rem;
 const Button = styled.button`
   background-color: #1ab85e;
   color: white;
-  padding: 10px 20px;
+  padding: 8px 16px;
   border: none;
   border-radius: 5px;
   font-size: 16px;
@@ -154,7 +154,7 @@ export class Inputs extends React.Component {
           </Formu>
         </section>
         <div>
-          <Button onClick={this.adicionarPostagem} onKeyDown={this.handleKeyDown} >Adicionar</Button>
+          <Button onClick={this.adicionarPostagem} onKeyDown={this.handleKeyDown} >Postar</Button>
         </div>
         <ListaDePostagens
           postagens={this.state.postagens}

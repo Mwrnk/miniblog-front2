@@ -1,14 +1,13 @@
-
 import styled from "styled-components";
 import React, { useState } from "react";
 
 const Button = styled.button`
   background-color: #1ab85e;
   color: white;
-  padding: 10px 20px;
+  padding: 4px 8px;
   border: none;
   border-radius: 5px;
-  font-size: 16px;
+  font-size: 12px;
   cursor: pointer;
   transition: background-color 0.3s ease;
   margin: 0.75em;
@@ -63,13 +62,16 @@ const Modal = styled.div`
 `;
 
 const ModalContent = styled.div`
-   background: white;
+  background: white;
   padding: 20px;
   border-radius: 8px;
   width: 80%;
   max-width: 600px;
-  overflow-y: auto;
-  white-space: nowrap;
+  height: 400px; /* Define uma altura fixa para o modal */
+  overflow-y: auto; /* Permite rolagem interna se o conteúdo ultrapassar a altura */
+  white-space: normal;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
 `;
 
 const ModalText = styled.p`
@@ -82,22 +84,22 @@ const CloseButton = styled.button`
   color: white;
   border: none;
   border-radius: 5px;
-  padding: 10px;
+  padding: 4px 8px;
   cursor: pointer;
-  font-size: 16px;
-
+  font-size: 12px;
+  margin: 0.75rem;
   &:hover {
     background-color: #d32f2f;
   }
 `;
 
 const PostText = styled.p`
-  max-height: 60px; ${'' /* Define uma altura máxima para o texto */}
-  overflow: hidden; ${'' /* Esconde o texto que ultrapassa o max-height */}
-  text-overflow: ellipsis; ${'' /* Adiciona reticências (...) no final do texto */}
+  max-height: 60px;
+  ${"" /* Define uma altura máxima para o texto */}
+  overflow: hidden;
+  ${"" /* Esconde o texto que ultrapassa o max-height */}
   margin: 0;
 `;
-
 
 const Postagem = ({ titulo, conteudo, link, id, removerPostagem }) => {
   const [modalOpen, setModalOpen] = useState(false);
@@ -106,7 +108,9 @@ const Postagem = ({ titulo, conteudo, link, id, removerPostagem }) => {
   const handleCloseModal = () => setModalOpen(false);
 
   const isLongText = conteudo.length > 30; // Verifica se o conteudo do campo texto tem mais de 30 caracteres
-  const truncatedText = isLongText ? conteudo.substring(0, 30) + "..." : conteudo; // Aplica reticências só se necessário
+  const truncatedText = isLongText
+    ? conteudo.substring(0, 30) + "..."
+    : conteudo; // Aplica reticências só se necessário
 
   return (
     <>
@@ -114,12 +118,11 @@ const Postagem = ({ titulo, conteudo, link, id, removerPostagem }) => {
         <PostImage src={link} alt={titulo} />
         <PostContent>
           <H2>{titulo}</H2>
-          <PostText>{truncatedText}</PostText> {/* Exibe texto com reticências se for longo */}
-          
-          {/* Só renderiza o botão "Ler mais" se o conteúdo for longo */}
+          <PostText>{truncatedText}</PostText>{" "}
+          {/* Exibe texto com reticências se o texto for longo*/}
+          {/* Mesma coisa com o botão "Ler mais"  */}
           {isLongText && <Button onClick={handleOpenModal}>Ler mais</Button>}
-          
-          <Button onClick={() => removerPostagem(id)}>Remover</Button>
+          <CloseButton onClick={() => removerPostagem(id)}>Remover</CloseButton>
         </PostContent>
       </PostCard>
 
@@ -128,7 +131,8 @@ const Postagem = ({ titulo, conteudo, link, id, removerPostagem }) => {
         <Modal>
           <ModalContent>
             <h2>{titulo}</h2>
-            <ModalText>{conteudo}</ModalText> {/* Mostra o conteúdo completo no modal */}
+            <ModalText>{conteudo}</ModalText>{" "}
+            {/* Mostra o conteúdo completo no modal */}
             <CloseButton onClick={handleCloseModal}>Fechar</CloseButton>
           </ModalContent>
         </Modal>

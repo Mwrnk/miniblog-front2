@@ -11,7 +11,7 @@ export class Header extends React.Component {
   render() {
     return (
       <>
-        <Cabecalho>Miniblog dos Crias</Cabecalho>
+        <Cabecalho>Header</Cabecalho>
       </>   
     );
   }
